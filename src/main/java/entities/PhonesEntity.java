@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "Phones", schema = "", catalog = "gisasu")
+@Table(name = "Phones", schema = "")
 public class PhonesEntity extends BaseEntity {
     private String number;
     private Integer idPhoneType;

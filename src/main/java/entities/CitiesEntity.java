@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Date: 18/09/16
  */
 @Entity
-@Table(name = "Cities", schema = "", catalog = "gisasu")
+@Table(name = "Cities", schema = "")
 public class CitiesEntity extends BaseEntity {
     private String name;
 
