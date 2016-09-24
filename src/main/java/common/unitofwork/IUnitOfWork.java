@@ -8,25 +8,26 @@ import entities.base.IEntity;
  * Date: 18/09/16
  */
 public interface IUnitOfWork {
-    /// <summary>
-    /// Реализация инициализации транзакций
-    /// </summary>
+
+    /**
+     *  Реализация инициализации транзакций
+     */
     void beginTransaction();
 
-    /// <summary>
-    /// Фиксация транзакций
-    /// </summary>
+    /**
+     * Фиксация транзакций
+     */
     void commitTransaction();
 
-    /// <summary>
-    /// Откат транзакций
-    /// </summary>
+    /**
+     * Откат транзакций
+     */
     void rollback();
 
-    /// <summary>
-    /// Получение репозитория для работы с сущностями
-    /// </summary>
-    /// <typeparam name="TEntity">Тип сущности</typeparam>
-    /// <returns>Репозиторий для работы с заданной сущностью</returns>
+    /**
+     * Получение репозитория для работы с сущностями
+     * @param <TEntity> Тип сущности
+     * @return Репозиторий для работы с заданной сущностью
+     */
     <TEntity extends BaseEntity> IRepository<TEntity> getRepository();
 }

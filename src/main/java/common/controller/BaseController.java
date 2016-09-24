@@ -1,6 +1,5 @@
 package common.controller;
 
-
 import common.unitofwork.*;
 import entities.ContactsEntity;
 import org.slf4j.LoggerFactory;
@@ -27,15 +26,9 @@ public class BaseController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(ModelMap model) {
-
-
-
-        try(HibernateUnitOfWork unitOfWork = unitOfWorkFactory.createUnitOfWork())  {
-
-
-              IRepository<ContactsEntity> repo = unitOfWork.<ContactsEntity>getRepository();
+        try (HibernateUnitOfWork unitOfWork = unitOfWorkFactory.createUnitOfWork()) {
+            IRepository<ContactsEntity> repo = unitOfWork.<ContactsEntity>getRepository();
             Iterable<ContactsEntity> contacts = repo.getAll(ContactsEntity.class);
-            int i = 1;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,7 +52,7 @@ public class BaseController {
 
     }
 
-    public void setUnitOfWorkFactory(UnitOfWorkFactory unitOfWorkFactory){
+    public void setUnitOfWorkFactory(UnitOfWorkFactory unitOfWorkFactory) {
         this.unitOfWorkFactory = unitOfWorkFactory;
     }
 

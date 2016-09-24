@@ -12,27 +12,19 @@ import java.sql.Connection;
  * Date: 19/09/16
  */
 public class HibernateUnitOfWork extends UnitOfWorkBase {
-    
-    //region Fields
-    /// <summary>
-    /// Сессию не выбрасываем наружу
-    /// </summary>
-    public final Session session;
+
+    /**
+     * Сессию не выбрасываем наружу
+     */
+    private final Session session;
 
     private Transaction transaction;
-
-    //endregion //Fields
-
-    //region Constructors
 
     public HibernateUnitOfWork(Session session)
     {
         this.session = session;
     }
 
-    //endregion //Constructors
-
-    //region Overrides
     @Override
     public void beginTransaction()
     {
@@ -64,17 +56,12 @@ public class HibernateUnitOfWork extends UnitOfWorkBase {
     }
 
     @Override
-    public <TEntity extends BaseEntity>IRepository getRepository() {
-        return new HibernateRepository<TEntity>(session);
+    public <TEntity extends BaseEntity>IRepository<TEntity> getRepository() {
+        return new HibernateRepository<>(session);
     }
-
-    //endregion //Overrides
-
-    //region IDisposable
 
     Boolean disposed = false;
 
-    // Protected implementation of Dispose pattern.
     @Override
     protected void dispose(Boolean disposing) throws Exception {
         if (disposed)
@@ -94,26 +81,10 @@ public class HibernateUnitOfWork extends UnitOfWorkBase {
         super.dispose(disposing);
     }
 
-    //endregion //IDisposable
-
-    //region Methods
     @Override
     public void close() throws Exception {
         if (!session.isConnected()) return;
 
         session.disconnect();
     }
-
-    public Connection getDbConnection()
-    {
-        /*Connection connection = session.getconnection;
-        if (connection.State != ConnectionState.Open)
-        {
-            connection.Open();
-        }
-          */
-        return null;//(SqlConnection)session.Connection;
-    }
-
-    //endregion //Methods
 }

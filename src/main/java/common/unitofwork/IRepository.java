@@ -10,40 +10,42 @@ import java.util.List;
  * Date: 18/09/16
  */
 public interface IRepository<TEntity extends IEntity> {
-    /// <summary>
-    /// Добавить список объектов
-    /// </summary>
-    /// <param name="entities"></param>
+    /**
+     * Добавить список объектов
+     * @param entities
+     */
     void insert(TEntity... entities);
 
-    /// <summary>
-    /// Обновить объект
-    /// </summary>
-    /// <param name="entities"></param>
+    /**
+     * Обновить объект
+     * @param entities
+     */
     void update(TEntity... entities);
 
-    /// <summary>
-    /// Удалить объект
-    /// </summary>
-    /// <param name="entities"></param>
+    /**
+     * Удалить объект
+     * @param entities
+     */
     void delete(TEntity... entities);
 
-    /// <summary>
-    /// Вернуть все объекты
-    /// </summary>
-    /// <returns>Перечисление сущностей</returns>
+    /**
+     * Вернуть все объекты
+     * @param type generic тип для работы с сущностями
+     * @return Перечисление сущностей
+     */
     List<TEntity> getAll(final Class<TEntity> type);
 
-    /// <summary>
-    /// Возвращает объект по его идентификатору
-    /// </summary>
-    /// <param name="id">Идентификатор объекта</param>
-    /// <returns>Найденый объект или null</returns>
-    TEntity getById(int id);
+    /**
+     * Возвращает объект по его идентификатору
+     * @param type generic тип для работы с сущностями
+     * @param id Идентификатор объекта
+     * @return Найденый объект или null
+     */
+    TEntity getById(final Class<TEntity> type, int id);
 
-    /// <summary>
-    /// Вернуть все объекты
-    /// </summary>
-    /// <returns>Перечисление сущностей</returns>
+    /**
+     * Вернуть все объекты
+     * @return Перечисление сущностей
+     */
     //Iterable<TEntity> GetBy(Expression<Func<TEntity, Boolean>> expression);
 }

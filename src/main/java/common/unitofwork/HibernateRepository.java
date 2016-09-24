@@ -12,23 +12,12 @@ import java.util.List;
  * Date: 19/09/16
  */
 public class HibernateRepository<TEntity extends BaseEntity> implements IRepository<TEntity> {
-    //region Fields
 
     private Session session;
-
-    //endregion //Fields
-
-    //region Constructors
 
     public HibernateRepository(Session session) {
         this.session = session;
     }
-
-    //endregion
-
-    //region Implementations
-
-    //region Insert
 
     public void insert(TEntity... entities) {
         for (TEntity entity : entities) {
@@ -38,10 +27,6 @@ public class HibernateRepository<TEntity extends BaseEntity> implements IReposit
         session.flush();
     }
 
-    //endregion //Insert
-
-    //region Update
-
     public void update(TEntity... entities) {
         for (TEntity entity : entities) {
             session.update(entity);
@@ -49,10 +34,6 @@ public class HibernateRepository<TEntity extends BaseEntity> implements IReposit
 
         session.flush();
     }
-
-    //endregion //Update
-
-    //region Delete
 
     public void delete(TEntity... entities) {
         for (TEntity entity : entities) {
@@ -62,15 +43,13 @@ public class HibernateRepository<TEntity extends BaseEntity> implements IReposit
         session.flush();
     }
 
-    //endregion //Delete
-
     public List<TEntity> getAll(final Class<TEntity> type) {
         Criteria criteria = session.createCriteria(type);
         return criteria.list();
     }
 
-    public TEntity getById(int id) {
-        return null;//return session.createQuery<TEntity>(id);
+    public TEntity getById(final Class<TEntity> type, int id) {
+        return (TEntity) session.load(type, id);
     }
 
     //Maybe do it later
@@ -78,6 +57,4 @@ public class HibernateRepository<TEntity extends BaseEntity> implements IReposit
     {
         return session.Query<TEntity>().Where(expression).ToList();
     } */
-
-    //endregion
 }
