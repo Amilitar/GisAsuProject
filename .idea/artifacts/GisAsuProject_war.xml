@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="GisAsuProject:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="gisasutest.war">
+      <element id="artifact" artifact-name="GisAsuProject:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2055633309">
+    <data-source source="LOCAL" name="src:main:webapp:configuration:hibernate.cfg.xml" uuid="e1fd0d22-029f-4ced-a46f-221d1b413044">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost/gisasu</jdbc-url>
+      <user-name>root</user-name>
+      <schema-pattern>gisasu.*</schema-pattern>
+      <default-schemas>gisasu.*</default-schemas>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
