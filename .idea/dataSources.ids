@@ -32,7 +32,7 @@
       <primary-key name="PRIMARY" columns="Id"/>
     </table>
   </data-source>
-  <data-source source="LOCAL" name="MySQL - testr@localhost" uuid="6eb0a30a-ab70-49aa-8369-2751add11bef">
+  <data-source source="LOCAL" name="MySQL - gisasu@localhost" uuid="6eb0a30a-ab70-49aa-8369-2751add11bef">
     <database-info product="MySQL" version="5.1.44" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
@@ -217,24 +217,24 @@
       <index name="user_nicename" unique="false" columns="user_nicename"/>
     </table>
     <table name="Cities" schema="" catalog="gisasu" type="TABLE">
-      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="Name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="Id"/>
     </table>
     <table name="Contacts" schema="" catalog="gisasu" type="TABLE">
-      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="FirstName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="MiddleName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="SecondName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="Id"/>
     </table>
     <table name="PhoneType" schema="" catalog="gisasu" type="TABLE">
-      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="Name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="Id"/>
     </table>
     <table name="Phones" schema="" catalog="gisasu" type="TABLE">
-      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="Id_contact" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="Id_phone_type" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="Number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>

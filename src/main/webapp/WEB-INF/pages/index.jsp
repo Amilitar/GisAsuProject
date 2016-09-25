@@ -20,6 +20,11 @@
                 var="bootstrapJs" />
     <script src="${jqueryJs}"></script>
     <script src="${bootstrapJs}"></script>
+
+    <spring:url value="/resources/client/js/index.js"
+                var="indexJs" />
+    <script src="${jqueryJs}"></script>
+
 </head>
 <body>
 

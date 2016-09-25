@@ -1,9 +1,6 @@
 package entities.base;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 /**
  * Base Entity with standart methods
@@ -16,6 +13,7 @@ public class BaseEntity implements IEntity {
 
     @Id
     @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }

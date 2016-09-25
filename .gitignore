@@ -35,3 +35,7 @@ target/tomcat/logs/access_log.2016-09-19
 target/tomcat/work/Tomcat/localhost/GisAsuProject/org/apache/jsp/WEB_002dINF/pages/index_jsp.class
 
 target/tomcat/work/Tomcat/localhost/GisAsuProject/org/apache/jsp/WEB_002dINF/pages/index_jsp.java
+
+target/classes/entities/base/BaseEntity.class
+
+target/classes/entities/base/BaseEntity.class

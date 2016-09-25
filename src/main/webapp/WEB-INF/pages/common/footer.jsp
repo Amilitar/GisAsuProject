@@ -7,7 +7,7 @@
 --%>
 <%@ page pageEncoding="cp1251"%>
 <%@ page language="java" contentType="text/html;charset=cp1251"%>
-<div style="border: 1px #ffff00 solid; height: 200px">
-
+<div>
+Тестовое задание для GisAsuProject
 
 </div>

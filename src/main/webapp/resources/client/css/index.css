@@ -1,18 +1,17 @@
 body {
-    background-color: #CCC;
-    margin:80px 80px 100px 100px;
+    background-color: #95c8cc;
 }
 div#header {
     position:fixed;
-    width:100%;
-    color:#CCC;
+    width:90%;
+    color: #54b8cc;
     background:#333;
-    padding:20px;
+    padding:10px;
 }
 div#footer {
     position:fixed;
     width:100%;
-    color:#CCC;
+    color:#54b8cc;
     background:#333;
     padding:8px;
 }

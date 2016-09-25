@@ -7,6 +7,9 @@
 --%>
 <%@ page pageEncoding="cp1251"%>
 <%@ page language="java" contentType="text/html;charset=cp1251"%>
-<div style="border: 1px red solid; height: 100px">
-  <h1>Телефонный справочник</h1>
+<div>
+    <div class="page-header">
+    <h1>Телефонный справочник<small>тестове задание для GisAsuProject</small></h1>
+</div>
+
 </div>
