@@ -29,8 +29,11 @@
                 var="jqueryJs"/>
     <spring:url value="/resources/core/js/bootstrap.min.js"
                 var="bootstrapJs"/>
+    <spring:url value="/resources/core/js/bootstrap-select.js"
+                var="bootstrapSelectJs"/>
     <script src="${jqueryJs}"></script>
     <script src="${bootstrapJs}"></script>
+    <script src="${bootstrapSelectJs}"></script>
 
     <spring:url value="/resources/client/js/index.js"
                 var="indexJs"/>

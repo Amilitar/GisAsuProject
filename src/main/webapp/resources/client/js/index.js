@@ -66,7 +66,7 @@ function setBindings(){
         });
     });
     $(".editContact").click(function(){
-
+        $("#saveEditDialog").modal("show");
     });
 }
 
