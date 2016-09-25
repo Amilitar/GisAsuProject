@@ -42,7 +42,7 @@ public class BaseController {
 
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String welcomeName(@PathVariable String name, ModelMap model) {
 
         model.addAttribute("message", "Welcome " + name);
@@ -50,7 +50,7 @@ public class BaseController {
         logger.debug("[welcomeName] counter : {}", counter);
         return VIEW_INDEX;
 
-    }
+    } */
 
     public void setUnitOfWorkFactory(UnitOfWorkFactory unitOfWorkFactory) {
         this.unitOfWorkFactory = unitOfWorkFactory;

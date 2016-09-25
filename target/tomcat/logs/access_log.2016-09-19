@@ -1,2 +1,0 @@
-0:0:0:0:0:0:0:1 - - [19/Sep/2016:21:50:02 +0700] "GET /GisAsuProject HTTP/1.1" 302 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [19/Sep/2016:21:50:03 +0700] "GET /GisAsuProject/ HTTP/1.1" 500 6320 http-bio-8080-exec-3 1213
