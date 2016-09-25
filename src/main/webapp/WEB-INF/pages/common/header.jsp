@@ -9,7 +9,7 @@
 <%@ page language="java" contentType="text/html;charset=cp1251"%>
 <div>
     <div class="page-header">
-    <h1>Телефонный справочник<small>тестове задание для GisAsuProject</small></h1>
+    <h1>Телефонный справочник<small> тестовое задание для GisAsuProject</small></h1>
 </div>
 
 </div>

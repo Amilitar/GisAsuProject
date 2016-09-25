@@ -5,6 +5,12 @@
     margin-bottom: 5px;
 }
 
+.resultGrid{
+    padding: 5px;
+    overflow: auto;
+    max-height: 600px;
+}
+
 .searchText {
     float: right;
     display: table-cell;
@@ -57,4 +63,9 @@
 
 .phoneInput{
     float: left;
+}
+
+.adressShortInfo{
+    float: left;
+    width: 50%;
 }

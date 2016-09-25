@@ -15,6 +15,7 @@ public class PhonesEntity extends BaseEntity {
     private String number;
     private PhoneTypeEntity phoneType;
     private Integer idContact;
+    private Boolean isMain;
 
     @Basic
     @Column(name = "Number")
@@ -28,11 +29,11 @@ public class PhonesEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_phone_type")
-    public PhoneTypeEntity getIdPhoneType() {
+    public PhoneTypeEntity getPhoneType() {
         return phoneType;
     }
 
-    public void setIdPhoneType(PhoneTypeEntity phoneType) {
+    public void setPhoneType(PhoneTypeEntity phoneType) {
         this.phoneType = phoneType;
     }
 
@@ -44,5 +45,15 @@ public class PhonesEntity extends BaseEntity {
 
     public void setIdContact(Integer idContact) {
         this.idContact = idContact;
+    }
+
+    @Basic
+    @Column(name = "isMain")
+    public Boolean getIsMain() {
+        return isMain;
+    }
+
+    public void setIsMain(Boolean isMain) {
+        this.isMain = isMain;
     }
 }

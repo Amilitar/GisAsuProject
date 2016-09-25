@@ -14,12 +14,15 @@ function getContacts() {
         var result = "";
         $.each(data, function (index, contact) {
 
+            var address= contact.address == null ? "Не заполнен": contact.address;
+
             var contactBody = "<div>" +
                 "<div class='adressShortInfo'>" +
                 "<div>Город: " + contact.city.name + "</div>" +
-                "<div>Адрес: " + contact.address + "</div>" +
+                "<div>Адрес: " + address + "</div>" +
                 "</div>" +
                 "<div class='phones'>" +
+                preparePhonesHtml(contact.phones) +
                 "</div>" +
             "</div>";
 
@@ -27,9 +30,9 @@ function getContacts() {
                 "         <div class='panel-heading' role='tab' id='headingContact" + contact.id + "'> " +
                 "             <h4 class='panel-title contactTitle'> " +
                 "                 <a role='button' data-toggle='collapse' data-parent='#accordion' href='#collapseContact" +
-                contact.id + "' aria-expanded='true' aria-controls='collapseContact" + contact.id + "'> " +
+                contact.id + "' aria-expanded='false' aria-controls='collapseContact" + contact.id + "'> " +
                 "                     ФИО:  " + contact.firstName + " " + contact.secondName + " " + contact.middleName +
-                " ()" +
+                " (" + getMainPhoneOrFirst(contact.phones) + ")" +
                 "                 </a> " +
                 "             </h4> " +
                 "<div class='contactControl'>" +
@@ -38,7 +41,7 @@ function getContacts() {
                 "</div>" +
                 "         </div> " +
                 "         <div id='collapseContact" + contact.id +
-                "' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='headingContact" + contact.id + "'> " +
+                "' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingContact" + contact.id + "'> " +
                 "             <div class='panel-body'> " +
                 contactBody +
                 "             </div> " +
@@ -52,6 +55,27 @@ function getContacts() {
         resultGrid.append(result);
         setBindings();
     });
+}
+
+function getMainPhoneOrFirst(phones){
+    var mainPhoneNumber = phones[0] == undefined ? "Список номеров пуст" : phones[0].number;
+    $.each(phones, function (index, phone) {
+        if (phone.isMain == true){
+            mainPhoneNumber = phone.number;
+        }
+
+    });
+    return mainPhoneNumber;
+}
+
+//подготавливает внешний вид для номеров телефонов
+function preparePhonesHtml(phones){
+    var result = "";
+    $.each(phones, function (index, phone) {
+        result += "<div id='contactPhone" + phone.id + "'>" + phone.number + "(" + phone.phoneType.name + ") </div>"
+
+    });
+    return result;
 }
 
 //подключает все связки управления

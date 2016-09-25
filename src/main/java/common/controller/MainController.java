@@ -26,9 +26,8 @@ public class MainController extends BaseController {
     public String welcome(ModelMap model) {
         model.addAttribute("message", "Welcome");
         model.addAttribute("counter", 1);
-        logger.debug("[welcome] counter : {}", 1);
 
-        // Spring uses InternalResourceViewResolver and return back index.jsp
+
         return VIEW_INDEX;
     }
 
