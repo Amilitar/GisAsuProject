@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class PhonesEntity extends BaseEntity {
     private String number;
     private PhoneTypeEntity phoneType;
-    private ContactsEntity contact;
+    private Integer idContact;
 
     @Basic
     @Column(name = "Number")
@@ -36,12 +36,13 @@ public class PhonesEntity extends BaseEntity {
         this.phoneType = phoneType;
     }
 
-    @ManyToOne
-    public ContactsEntity getContact() {
-        return contact;
+    @Basic
+    @Column(name = "id_contact")
+    public Integer getIdContact() {
+        return idContact;
     }
 
-    public void setContact(ContactsEntity contact) {
-        this.contact = contact;
+    public void setIdContact(Integer idContact) {
+        this.idContact = idContact;
     }
 }

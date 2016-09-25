@@ -69,8 +69,8 @@ public class ContactsEntity extends BaseEntity {
         this.city = city;
     }
 
-    @OneToMany
-    @JoinTable(name = "id_contact")
+    @OneToMany(cascade={CascadeType.ALL})
+    @JoinColumn(name="id_contact")
     public Set<PhonesEntity> getPhones() {
         return phones;
     }
