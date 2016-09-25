@@ -38,9 +38,6 @@
     <spring:url value="/resources/client/js/index.js"
                 var="indexJs"/>
     <script src="${indexJs}"></script>
-    <spring:url value="/resources/client/js/body.js"
-                var="bodyJs"/>
-    <script src="${bodyJs}"></script>
 
 </head>
 <body>

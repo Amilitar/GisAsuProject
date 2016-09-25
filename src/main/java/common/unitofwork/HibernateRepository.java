@@ -51,6 +51,11 @@ public class HibernateRepository<TEntity extends BaseEntity> implements IReposit
         return (TEntity) session.get(type, id);
     }
 
+    @Override
+    public List<TEntity> getAllByFilter(Class<TEntity> type, String filterString) {
+        return null;
+    }
+
     //Maybe do it later
     /*public Iterable<TEntity> getBy(Expression<Func<TEntity, bool>> expression)
     {
