@@ -1,5 +1,6 @@
 package common.unitofwork;
 
+import data.entities.ContactsEntity;
 import data.entities.base.BaseEntity;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -47,13 +48,30 @@ public class HibernateRepository<TEntity extends BaseEntity> implements IReposit
         return criteria.list();
     }
 
-    public TEntity getById(final Class<TEntity> type, int id) {
+    public TEntity getById(final Class<TEntity> type, Long id) {
         return (TEntity) session.get(type, id);
     }
 
     @Override
-    public List<TEntity> getAllByFilter(Class<TEntity> type, String filterString) {
-        return null;
+    public List<ContactsEntity> getAllByFilter(Class<TEntity> type, String filterString) {
+        //хардкод для поиск
+        StringBuilder sql =new StringBuilder();
+        String search = "%" + filterString + "%";
+        sql.append("SELECT DISTINCT Co.* FROM Contacts AS Co " +
+                " JOIN " +
+                " Phones AS Ph ON Co.Id = Ph.Id_contact" +
+                " WHERE" +
+                "  Co.FirstName like '" + search + "' OR " +
+                "  Co.MiddleName like '" + search + "' OR " +
+                "  Co.SecondName like '" + search + "' OR " +
+                "  Co.Address like '" + search + "' OR " +
+                "  Ph.Number like '" + search + "' " +
+                "");
+        List<ContactsEntity> contactsEntity= session.createSQLQuery(sql.toString())
+                .addEntity(ContactsEntity.class)
+                .list();
+
+        return contactsEntity;
     }
 
     //Maybe do it later

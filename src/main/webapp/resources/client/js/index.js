@@ -3,7 +3,7 @@
     fillCitiesList();
     loadPhoneTypes();
     createAddNewButton();
-
+    searchTextInputController();
 
     $("#addNewPhoneNumber").click(function () {
         $("#phoneItems").append(getPhoneHtml());
@@ -28,7 +28,10 @@
         $(".phoneInput").each(function () {
             var sender = $(this).find(".form-control");
             var phone = {};
-            phone.id = sender.attr("phoneId");
+            var phoneId = sender.attr("phoneId");
+            if (phoneId != 0) {
+                phone.id = phoneId;
+            }
             phone.number = sender.val();
             phone.idContact = selectedContact.id;
             phone.isMain = sender.attr("isMain");
@@ -55,10 +58,24 @@ var phoneTypeList = [];
 var globalContacts = [];
 var selectedContact = {};
 
+function searchTextInputController() {
+    $("#searchTextInput").keypress(function (e) {
+        if (e.which == 13) {
+            var searchString = $(this).val();
+            if (searchString == undefined || searchString === "") {
+                getContacts();
+            }
+            else {
+                getContactsByFilter(searchString);
+            }
+        }
+    });
+}
+
 function createAddNewButton() {
     $(".createNewContact").click(function () {
-        var contact = [];
-        showAddDialog(contact);
+        selectedContact = {};
+        showAddDialog(selectedContact);
     });
 }
 
@@ -78,9 +95,14 @@ function saveContact(contact) {
     }).done(function () {
         alert("Сохранил");
     });
-    if (selectedContact.id == 0){
-        getContacts();
-    }
+
+    setTimeout(function () {
+        if (selectedContact.id == undefined) {
+            getContacts();
+        }
+    }, 500);
+
+
 }
 
 function loadPhoneTypes() {
@@ -151,7 +173,8 @@ function getContacts() {
 function getContactsByFilter(filterString) {
     $.ajax({
         dataType: "json",
-        url: "/getContactsByFilter/" + filterString
+        url: "/getContactsByFilter/" + filterString,
+        data: []
     }).done(function (data) {
         createContactList(data);
     });
@@ -241,7 +264,7 @@ function setBindings() {
             url: "/deleteContact/" + idContact,
             type: "DELETE"
         }).done(function () {
-            alert("Удален");
+            getContacts();
         });
     });
     $(".editContact").click(function () {
@@ -261,7 +284,7 @@ function showEditDialog(contact) {
     clearDialog();
     setupDialog(contact);
     selectedContact = contact;
-    $("#saveEditLabel").text("Редактирование " + contact.firstName + contact.secondName + contact.middleName);
+    $("#saveEditLabel").text("Редактирование " + contact.firstName + " " + contact.secondName + " " + contact.middleName);
     showDialog();
 
 }

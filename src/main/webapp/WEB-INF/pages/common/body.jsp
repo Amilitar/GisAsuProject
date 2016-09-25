@@ -10,7 +10,7 @@
 <div>
     <div class="searchbar">
         <div class="form-group searchText">
-            <input type="text" class="form-control" placeholder="Введите ФИО или номер телефона">
+            <input type="text" id="searchTextInput" class="form-control" placeholder="Введите ФИО или номер телефона и нажмите ENTER">
         </div>
         <div class="searchButton">
             <button class="btn btn-default createNewContact">Создать</button>

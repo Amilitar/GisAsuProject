@@ -1,5 +1,6 @@
 package common.unitofwork;
 
+import data.entities.ContactsEntity;
 import data.entities.base.IEntity;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public interface IRepository<TEntity extends IEntity> {
      * @param type generic тип для работы с сущностями
      * @return Перечисление сущностей
      */
-    List<TEntity> getAllByFilter(final Class<TEntity> type, String filterString);
+    List<ContactsEntity> getAllByFilter(final Class<TEntity> type, String filterString);
 
     /**
      * Возвращает объект по его идентификатору
@@ -47,7 +48,7 @@ public interface IRepository<TEntity extends IEntity> {
      * @param id Идентификатор объекта
      * @return Найденый объект или null
      */
-    TEntity getById(final Class<TEntity> type, int id);
+    TEntity getById(final Class<TEntity> type, Long id);
 
     /**
      * Вернуть все объекты

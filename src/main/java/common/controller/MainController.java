@@ -35,8 +35,8 @@ public class MainController extends BaseController {
 
     @RequestMapping(value = "/saveContact", method = RequestMethod.POST,
             produces = {"application/json; charset=cp1251"}, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String saveContact(@RequestBody String json) {
+
+    public @ResponseBody String saveContact(@RequestBody String json) {
         URLDecoder urlDecoder = new URLDecoder();
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -121,7 +121,7 @@ public class MainController extends BaseController {
     @RequestMapping(value = "/deleteContact/{idContact}", method = RequestMethod.DELETE)
     public
     @ResponseBody
-    void deleteContact(@PathVariable("idContact") int idContact) {
+    void deleteContact(@PathVariable("idContact") Long idContact) {
 
         deleteContactEntity(idContact);
 
@@ -174,14 +174,14 @@ public class MainController extends BaseController {
         try (HibernateUnitOfWork unitOfWork = unitOfWorkFactory.createUnitOfWork()) {
             IRepository<ContactsEntity> repo = unitOfWork.<ContactsEntity>getRepository();
             //todo не забыть реализоватьrepo.
-            return repo.getAll(ContactsEntity.class);
+            return repo.getAllByFilter(ContactsEntity.class, filterString);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private void deleteContactEntity(int idContact) {
+    private void deleteContactEntity(Long idContact) {
         try (HibernateUnitOfWork unitOfWork = unitOfWorkFactory.createUnitOfWork()) {
             IRepository<ContactsEntity> repo = unitOfWork.<ContactsEntity>getRepository();
             ContactsEntity contactsEntity = repo.getById(ContactsEntity.class, idContact);
