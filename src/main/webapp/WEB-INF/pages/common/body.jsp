@@ -71,14 +71,13 @@
                     </div>
                 </div>
                 <div class="phoneContent">
-                    <div class="input-group">
-                        <div>Отчество:</div>
-                        <input type="text" class="form-control" placeholder="Введите отчество контакта">
+                    <div class="input-group phoneInput">
+                        <input type="text" class="form-control" placeholder="Введите номер контакта">
                     </div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                            Выбор города <span class="caret"></span>
+                            Выбор типа номера <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
