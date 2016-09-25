@@ -36,6 +36,12 @@ target/tomcat/work/Tomcat/localhost/GisAsuProject/org/apache/jsp/WEB_002dINF/pag
 
 target/tomcat/work/Tomcat/localhost/GisAsuProject/org/apache/jsp/WEB_002dINF/pages/index_jsp.java
 
-target/classes/entities/base/BaseEntity.class
+target/classes/data.entities/base/BaseEntity.class
 
-target/classes/entities/base/BaseEntity.class
+target/classes/data.entities/base/BaseEntity.class
+
+target/classes/common/unitofwork/HibernateRepository.class
+
+target/classes/common/unitofwork/HibernateUnitOfWork.class
+
+target/classes/common/unitofwork/HibernateUnitOfWork.class

@@ -1,11 +1,10 @@
-package entities.base;
+package data.dto.base;
 
 /**
  * User: nikpodrivnik
- * Date: 18/09/16
+ * Date: 25/09/16
  */
-public interface IEntity {
-
+public interface IDto {
     //Base get for id
     int getId();
 

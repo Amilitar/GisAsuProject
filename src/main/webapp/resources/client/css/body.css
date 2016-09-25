@@ -1,0 +1,38 @@
+.searchbar {
+    display: table;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.searchText {
+    float: right;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    margin: 0px;
+}
+
+.searchButton {
+    display: table-cell;
+    vertical-align: middle;
+    width: 75px;
+    text-align: right;
+}
+
+.contactTitle {
+    float: left;
+}
+
+.contactControl{
+    text-align: right;
+}
+
+.editContact {
+    cursor: hand;
+}
+
+.removeContact{
+    color: red;
+    cursor: hand;
+}

@@ -1,7 +1,6 @@
 package common.unitofwork;
 
-import entities.base.BaseEntity;
-import entities.base.IEntity;
+import data.entities.base.BaseEntity;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
@@ -49,7 +48,7 @@ public class HibernateRepository<TEntity extends BaseEntity> implements IReposit
     }
 
     public TEntity getById(final Class<TEntity> type, int id) {
-        return (TEntity) session.load(type, id);
+        return (TEntity) session.get(type, id);
     }
 
     //Maybe do it later

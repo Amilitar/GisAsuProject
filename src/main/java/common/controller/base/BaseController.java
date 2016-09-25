@@ -1,12 +1,8 @@
 package common.controller.base;
 
 import common.unitofwork.*;
-import entities.ContactsEntity;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * User: nikpodrivnik

@@ -1,4 +1,4 @@
-package entities.base;
+package data.entities.base;
 
 import javax.persistence.*;
 

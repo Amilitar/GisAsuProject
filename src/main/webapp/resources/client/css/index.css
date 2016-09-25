@@ -1,17 +1,28 @@
 body {
     background-color: #95c8cc;
 }
+
 div#header {
-    position:fixed;
-    width:90%;
-    color: #54b8cc;
-    background:#333;
-    padding:10px;
+    width: 100%;
+    color: #2b4a5b;
+    background: #89c3e7;
+    padding: 5px 5px 5px 0px;
 }
+
 div#footer {
-    position:fixed;
-    width:100%;
-    color:#54b8cc;
-    background:#333;
-    padding:8px;
+    width: 100%;
+    color: #2b4a5b;
+    background: #89c3e7;
+    padding: 8px;
+}
+
+div#content {
+    padding: 20px;
+}
+
+div#body{
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 90px;
+    border: 1px solid #3c8499;
 }

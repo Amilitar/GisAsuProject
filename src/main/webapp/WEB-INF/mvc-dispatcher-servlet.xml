@@ -29,10 +29,10 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>entities.CitiesEntity</value>
-                <value>entities.ContactsEntity</value>
-                <value>entities.PhonesEntity</value>
-                <value>entities.PhoneTypeEntity</value>
+                <value>data.entities.CitiesEntity</value>
+                <value>data.entities.ContactsEntity</value>
+                <value>data.entities.PhonesEntity</value>
+                <value>data.entities.PhoneTypeEntity</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -40,7 +40,7 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect
                 </prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
@@ -56,6 +56,11 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
+
+    <bean id="bootstrap" class="common.bootstrap.BootstrapService" init-method="afterPropertiesSet">
+
+    </bean>
+
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>

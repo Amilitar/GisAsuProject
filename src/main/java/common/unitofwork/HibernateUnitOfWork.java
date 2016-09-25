@@ -1,11 +1,8 @@
 package common.unitofwork;
 
-import entities.base.BaseEntity;
-import entities.base.IEntity;
+import data.entities.base.BaseEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import java.sql.Connection;
 
 /**
  * User: nikpodrivnik

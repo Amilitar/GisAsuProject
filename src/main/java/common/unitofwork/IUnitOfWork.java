@@ -1,7 +1,6 @@
 package common.unitofwork;
 
-import entities.base.BaseEntity;
-import entities.base.IEntity;
+import data.entities.base.BaseEntity;
 
 /**
  * User: nikpodrivnik

@@ -11,7 +11,7 @@
         </layout>
     </appender>
 
-    <logger name="common.controller.BaseController" level="debug"
+    <logger name="common.controller.base.BaseController" level="debug"
             additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>

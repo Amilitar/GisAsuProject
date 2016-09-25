@@ -1,6 +1,6 @@
-package entities;
+package data.entities;
 
-import entities.base.BaseEntity;
+import data.entities.base.BaseEntity;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
