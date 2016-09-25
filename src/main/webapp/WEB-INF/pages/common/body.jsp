@@ -13,7 +13,7 @@
             <input type="text" class="form-control" placeholder="Введите ФИО или номер телефона">
         </div>
         <div class="searchButton">
-            <button type="submit" class="btn btn-default ">Найти</button>
+            <button class="btn btn-default createNewContact">Создать</button>
         </div>
 
     </div>

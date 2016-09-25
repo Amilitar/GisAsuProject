@@ -1,5 +1,6 @@
 package common.bootstrap;
 
+import common.bootstrap.steps.CreateTestData;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ public class BootstrapService implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         logger.debug("Bootstrapping data...");
 
-
+        CreateTestData createTestData = new CreateTestData();
+        createTestData.doStep();
 
         logger.debug("...Bootstrapping completed");
     }
+
 
 
 

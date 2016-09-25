@@ -7,8 +7,8 @@ package data.entities.base;
 public interface IEntity {
 
     //Base get for id
-    int getId();
+    Long getId();
 
     //Base set for id
-    void setId(int id);
+    void setId(Long id);
 }

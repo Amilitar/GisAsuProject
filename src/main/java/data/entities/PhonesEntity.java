@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class PhonesEntity extends BaseEntity {
     private String number;
     private PhoneTypeEntity phoneType;
-    private Integer idContact;
+    private Long idContact;
     private Boolean isMain;
 
     @Basic
@@ -39,11 +39,11 @@ public class PhonesEntity extends BaseEntity {
 
     @Basic
     @Column(name = "id_contact")
-    public Integer getIdContact() {
+    public Long getIdContact() {
         return idContact;
     }
 
-    public void setIdContact(Integer idContact) {
+    public void setIdContact(Long idContact) {
         this.idContact = idContact;
     }
 

@@ -127,10 +127,14 @@ public class MainController extends BaseController {
 
     }
 
-    private void saveContactEntity(ContactsEntity contactsEntity){
+    private void saveContactEntity(ContactsEntity contactsEntity) {
         try (HibernateUnitOfWork unitOfWork = unitOfWorkFactory.createUnitOfWork()) {
             IRepository<ContactsEntity> repo = unitOfWork.<ContactsEntity>getRepository();
-            repo.update(contactsEntity);
+            if (contactsEntity.getId() == null) {
+                repo.insert(contactsEntity);
+            } else {
+                repo.update(contactsEntity);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -2,57 +2,93 @@
     getContacts();
     fillCitiesList();
     loadPhoneTypes();
+    createAddNewButton();
 
-    $("#saveButton").click(function(){
 
+    $("#addNewPhoneNumber").click(function () {
+        $("#phoneItems").append(getPhoneHtml());
+        $(".phoneTypeSelect").click(function () {
+            setButtonPhoneTypeText($(this));
+        });
+    });
+
+    $("#saveButton").click(function () {
         selectedContact.firstName = $("#contactName").val();
         selectedContact.secondName = $("#contactSecondName").val();
         selectedContact.middleName = $("#contactLastName").val();
         selectedContact.address = $("#contactAddress").val();
 
         var buttonCity = $("#buttonCity");
+        var city = {};
 
-        selectedContact.city.id = buttonCity.attr("idCity");
-        selectedContact.city.name = buttonCity.text();
+        city.id = buttonCity.attr("idCity");
+        city.name = buttonCity.text();
+        selectedContact.city = city;
+        selectedContact.phones = [];
+        $(".phoneInput").each(function () {
+            var sender = $(this).find(".form-control");
+            var phone = {};
+            phone.id = sender.attr("phoneId");
+            phone.number = sender.val();
+            phone.idContact = selectedContact.id;
+            phone.isMain = sender.attr("isMain");
+            var phoneType = {};
+            phoneType.id = sender.attr("phoneTypeId");
+            phoneType.name = sender.attr("phoneTypeName");
+            phone.phoneType = phoneType;
+
+            selectedContact.phones.push(phone);
+        });
 
         saveContact(selectedContact);
         closeDialog();
         var changeContact = $("#contactItemListId" + selectedContact.id);
         changeContact.empty();
         changeContact.append(getContactHtmlItem(selectedContact));
-
+        setBindings();
     });
 });
 
 var phoneTypes = "";
+var phoneTypeList = [];
+
 var globalContacts = [];
-var selectedContact = [];
+var selectedContact = {};
 
+function createAddNewButton() {
+    $(".createNewContact").click(function () {
+        var contact = [];
+        showAddDialog(contact);
+    });
+}
 
-
-function saveContact(contact){
+function saveContact(contact) {
     $.ajax({
         url: "/saveContact",
         data: encodeURIComponent(JSON.stringify(contact)),
         type: "POST",
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             xhr.setRequestHeader("Accept", "application/json");
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xhr.setRequestHeader("Content-Type", "application/json", "charset=cp1251");
-        } ,
-        success: function(smartphone) {
+        },
+        success: function (smartphone) {
             alert("Сохранил2");
         }
     }).done(function () {
         alert("Сохранил");
     });
+    if (selectedContact.id == 0){
+        getContacts();
+    }
 }
 
-function loadPhoneTypes(){
+function loadPhoneTypes() {
     $.ajax({
         dataType: "json",
         url: "/getPhoneTypes"
     }).done(function (data) {
+        phoneTypeList = data;
         $.each(data, function (index, value) {
             phoneTypes += "<li><a href='#' class='phoneTypeSelect' idPhoneType='" + value.id + "'>" + value.name + "</a></li>";
         });
@@ -72,28 +108,32 @@ function fillCitiesList() {
         citiesListController.empty();
         citiesListController.append(citiesList);
 
-        $(".citySelect").click(function(){
-            setButtonCityText($(this).text(), $(this).attr(idCity))
+        $(".citySelect").click(function () {
+            setButtonCityText($(this).text(), $(this).attr("idCity"));
         });
     });
 
 
 }
 
-function setButtonCityText(text, id){
+function setButtonCityText(text, id) {
     var buttonCity = $("#buttonCity");
     buttonCity.attr("idCity", id);
     buttonCity.text(text);
     buttonCity.append("<span class='caret'></span>");
 }
 
-function setButtonPhoneTypeText(sender){
+function setButtonPhoneTypeText(sender) {
     var buttonPhoneType = sender.parent().parent().parent().find(".phoneTypeSelectButton");
+    var linkedElement = sender.parent().parent().parent().parent().find(".phoneInput").find(".form-control");
     var id = sender.attr("idPhoneType");
     var text = sender.text();
     buttonPhoneType.attr("idPhoneType", id);
     buttonPhoneType.text(text);
     buttonPhoneType.append("<span class='caret'></span>");
+
+    linkedElement.attr("phoneTypeId", id);
+    linkedElement.attr("phoneTypeName", text);
 }
 
 //Список всех контактов
@@ -122,7 +162,7 @@ function createContactList(contacts) {
     globalContacts = contacts;
     var result = "";
     $.each(contacts, function (index, contact) {
-        result += "<div id='contactItemListId" + contact.id  + "'>" +  getContactHtmlItem(contact) + "</div>";
+        result += "<div id='contactItemListId" + contact.id + "'>" + getContactHtmlItem(contact) + "</div>";
     });
     var resultGrid = $(".resultGrid").find("#accordion");
     resultGrid.empty();
@@ -210,31 +250,31 @@ function setBindings() {
 }
 
 //диалог для создания нового контакта
-function showAddDialog(contact){
+function showAddDialog(contact) {
     clearDialog();
     $("#saveEditLabel").text("Создание нового контакта ");
     showDialog();
 }
 
 //диалог для редактирования контакта
-function showEditDialog(contact){
-   clearDialog();
+function showEditDialog(contact) {
+    clearDialog();
     setupDialog(contact);
     selectedContact = contact;
     $("#saveEditLabel").text("Редактирование " + contact.firstName + contact.secondName + contact.middleName);
-   showDialog();
+    showDialog();
 
 }
 
-function showDialog(){
+function showDialog() {
     $("#saveEditDialog").modal("show");
 }
 
-function closeDialog(){
+function closeDialog() {
     $("#saveEditDialog").modal("hide");
 }
 
-function setupDialog(contact){
+function setupDialog(contact) {
     $("#contactName").val(contact.firstName);
     $("#contactSecondName").val(contact.secondName);
     $("#contactLastName").val(contact.middleName);
@@ -243,7 +283,7 @@ function setupDialog(contact){
     setButtonCityText(contact.city.name, contact.city.id);
 
     $("#phoneItems").append(preparePhonesForDialogHtml(contact.phones));
-    $(".phoneTypeSelect").click(function(){
+    $(".phoneTypeSelect").click(function () {
         setButtonPhoneTypeText($(this));
     });
 
@@ -253,26 +293,39 @@ function setupDialog(contact){
 function preparePhonesForDialogHtml(phones) {
     var result = "";
     $.each(phones, function (index, phone) {
-         result += "<div>" +
-             "<div class='input-group phoneInput'> " +
-            "                            <input type='text' class='form-control' id='phoneNumberId" + phone.id +
-            "' placeholder='Введите номер контакта' value='" + phone.number + "'> " +
-            "                        </div> " +
-            "                        <div class='btn-group'> " +
-            "                            <button type='button' class='btn btn-default dropdown-toggle phoneTypeSelectButton' data-toggle='dropdown' " +
-            "                                    aria-haspopup='true' aria-expanded='false'> " +
-            "                                " + phone.phoneType.name + " <span class='caret'></span> " +
-            "                            </button> " +
-            "                            <ul class='dropdown-menu'> " + phoneTypes +
-            "                            </ul> " +
-            "                        </div> " +
-            "</div>";
+        result += getPhoneHtml(phone);
 
     });
     return result;
 }
 
-function clearDialog(){
+function getPhoneHtml(phone) {
+    var id = phone == undefined ? "0" : phone.id;
+    var isMain = phone == undefined ? "false" : phone.isMain;
+    var number = phone == undefined ? "" : phone.number;
+    var phoneTypeId = phone == undefined ? phoneTypeList[0].id : phone.phoneType.id;
+    var phoneTypeName = phone == undefined ? phoneTypeList[0].name : phone.phoneType.name;
+
+    return "<div>" +
+        "<div class='input-group phoneInput'> " +
+        "                            <input type='text' class='form-control' " +
+        " phoneId='" + id + "' phoneTypeId='" + phoneTypeId +
+        "' phoneTypeName='" + phoneTypeName + "' isMain='" + isMain + "' id='phoneNumberId" + id +
+        "' placeholder='Введите номер контакта' value='" + number + "'> " +
+        "                        </div> " +
+        "                        <div class='btn-group'> " +
+        "                            <button type='button' class='btn btn-default dropdown-toggle phoneTypeSelectButton' data-toggle='dropdown' " +
+        "                                    aria-haspopup='true' aria-expanded='false'> " +
+        "                                " + phoneTypeName + " <span class='caret'></span> " +
+        "                            </button> " +
+        "                            <ul class='dropdown-menu'> " + phoneTypes +
+        "                            </ul> " +
+        "                        </div> " +
+        "</div>";
+
+}
+
+function clearDialog() {
     $("#contactName").val("");
     $("#contactSecondName").val("");
     $("#contactLastName").val("");
@@ -283,10 +336,10 @@ function clearDialog(){
     $("#phoneItems").empty();
 }
 
-function findContactById(id){
+function findContactById(id) {
     var contact = [];
-    $.each(globalContacts, function(index, value){
-        if (value.id == id){
+    $.each(globalContacts, function (index, value) {
+        if (value.id == id) {
             contact = value;
         }
     })

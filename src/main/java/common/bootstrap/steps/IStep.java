@@ -12,4 +12,9 @@ public interface IStep {
      * @param priority номер приоритета
      */
     void setPriority(int priority);
+
+    /**
+     * Выполнение шага
+     */
+    void doStep();
 }

@@ -11,8 +11,8 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
     <context:component-scan base-package="common.controller"/>
-    <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mvc:annotation-driven />
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:annotation-driven/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
@@ -40,7 +40,7 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect
                 </prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
                 <prop key="hibernate.connection.CharSet">utf8</prop>
                 <prop key="hibernate.connection.characterEncoding">utf8</prop>
                 <prop key="hibernate.connection.characterSetResults">utf8</prop>
@@ -54,6 +54,10 @@
     </bean>
 
     <bean id="mainController" class="common.controller.MainController">
+        <property name="unitOfWorkFactory" ref="unitOfWorkFactory"/>
+    </bean>
+
+    <bean id="testData" class="common.bootstrap.steps.CreateTestData">
         <property name="unitOfWorkFactory" ref="unitOfWorkFactory"/>
     </bean>
 

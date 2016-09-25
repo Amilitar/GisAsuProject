@@ -56,7 +56,7 @@
 
                     </div>
                     <div>
-                        <a href="#">Добавить</a>
+                        <a href="#" id="addNewPhoneNumber">Добавить</a>
                     </div>
                 </div>
             </div>
