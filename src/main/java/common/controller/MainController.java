@@ -45,6 +45,20 @@ public class MainController extends BaseController {
         return jsonInString;
     }
 
+    @RequestMapping(value = "/getContactsByFilter/{filterString}", method = RequestMethod.GET, produces={"application/json; charset=cp1251"})
+    public @ResponseBody String getContactsByFilter(@PathVariable("filterString")String filterString){
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<ContactsEntity> contacts = (ArrayList<ContactsEntity>) getContactEntitiesByFilter(filterString);
+        String jsonInString = null;
+        try {
+            jsonInString = mapper.writeValueAsString(contacts);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return jsonInString;
+    }
+
 
     @RequestMapping(value = "/deleteContact/{idContact}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteContact(@PathVariable("idContact")int idContact){
@@ -56,6 +70,17 @@ public class MainController extends BaseController {
     private java.util.List<ContactsEntity> getContactEntities(){
         try (HibernateUnitOfWork unitOfWork = unitOfWorkFactory.createUnitOfWork()) {
             IRepository<ContactsEntity> repo = unitOfWork.<ContactsEntity>getRepository();
+            return repo.getAll(ContactsEntity.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private java.util.List<ContactsEntity> getContactEntitiesByFilter(String filterString){
+        try (HibernateUnitOfWork unitOfWork = unitOfWorkFactory.createUnitOfWork()) {
+            IRepository<ContactsEntity> repo = unitOfWork.<ContactsEntity>getRepository();
+            //todo не забыть реализоватьrepo.
             return repo.getAll(ContactsEntity.class);
         } catch (Exception e) {
             e.printStackTrace();

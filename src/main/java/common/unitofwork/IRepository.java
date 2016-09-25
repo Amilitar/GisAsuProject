@@ -35,6 +35,13 @@ public interface IRepository<TEntity extends IEntity> {
     List<TEntity> getAll(final Class<TEntity> type);
 
     /**
+     * Вернуть все объекты в полях которых есть строка
+     * @param type generic тип для работы с сущностями
+     * @return Перечисление сущностей
+     */
+    List<TEntity> getAllByFilter(final Class<TEntity> type, String filterString);
+
+    /**
      * Возвращает объект по его идентификатору
      * @param type generic тип для работы с сущностями
      * @param id Идентификатор объекта
